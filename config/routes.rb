@@ -11,11 +11,16 @@ Rails.application.routes.draw do
 
   devise_scope :user do
    authenticated :user do
+     # Route authenticated users to home page if they visit root
      root 'home#index', as: :authenticated_root
+     # Route all resources normally if authenticated
+     resources :products
    end
 
    unauthenticated :user do
+     # Route unauthenticated users to sign in page regardless of url they visit
      root 'devise/sessions#new', as: :unauthenticated_root
+     get '*path' => redirect('/')
    end
   end
 

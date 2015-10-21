@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # use devise for user authentication
 gem 'devise'
 
+# use money-rails gem to handle money in database and provide helper methods for conversion/validation
+gem 'money-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

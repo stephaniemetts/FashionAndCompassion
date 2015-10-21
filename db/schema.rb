@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015003906) do
+ActiveRecord::Schema.define(version: 20151021041312) do
+
+  create_table "products", force: :cascade do |t|
+    t.string   "title"
+    t.string   "sku"
+    t.string   "color"
+    t.string   "collection"
+    t.integer  "warehouse_inventory"
+    t.integer  "bdbox_inventory"
+    t.integer  "blacklion_inventory"
+    t.integer  "cotswold_inventory"
+    t.integer  "cost_cents"
+    t.text     "notes"
+    t.integer  "wholesale_cents"
+    t.integer  "retail_cents"
+    t.boolean  "selling"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
