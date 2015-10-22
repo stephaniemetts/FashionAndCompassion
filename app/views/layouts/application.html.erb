@@ -7,31 +7,40 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<!--<p class="notice"><%= notice %></p>-->
+<!--<p class="alert"><%= alert %></p>-->
 
-<div id="main-container" class="container">
-  <div class="row">
-    <div class="col-xs-6">
-      <img src = "http://cdn.shopify.com/s/files/1/0241/2099/t/4/assets/logo.png?3316934976037730235">
-      <h1>Fashion and Compassion Home Page</h1>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <a href="#" class="navbar-brand"><img class="header-image" src=http://cdn.shopify.com/s/files/1/0241/2099/t/4/assets/logo.png?3316934976037730235" alt="">
+      </a>
+      <a href="#" class="navbar-brand navbar-text">Fashion and Compassion</a>
     </div>
-    <div class="col-xs-6">
-      <ul class="pull-right">
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right navbar-text user-navbar-action">
         <% if user_signed_in? %>
-        <li>
-          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        </li>
+            <li>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            </li>
         <% end %>
         <% if current_user.try(:admin?) %>
-        <li><a href="#">Reports</a></li>
+            <li><a href="#">Reports</a></li>
         <% end %>
       </ul>
     </div>
   </div>
+</nav>
 
+<div id="main-container" class="container">
   <div class="row">
     <div class="col-xs-12">
+      <% flash.each do |name,msg| -%>
+          <%= content_tag :div, msg, class:name %>
+      <% end -%>
       <%= yield %>
     </div>
   </div>
