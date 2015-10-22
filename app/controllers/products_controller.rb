@@ -1,10 +1,16 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, except: [:index, :show]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    # @products = Product.all
+    if params[:search]
+      @products = Product.search(params[:search]).order("created_at DESC")
+    else
+      @products = Product.order("created_at DESC")
+    end
   end
 
   # GET /products/1
@@ -71,4 +77,12 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title, :sku, :color, :collection, :warehouse_inventory, :bdbox_inventory, :blacklion_inventory, :cotswold_inventory, :cost_cents, :notes, :wholesale_cents, :retail_cents, :selling)
     end
+
+    def require_admin
+      unless current_user.try(:admin?)
+        flash[:alert] = "You must be an admin user to perform that action"
+        redirect_to "/"
+      end
+    end
+
 end

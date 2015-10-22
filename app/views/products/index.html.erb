@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<table class="table">
+<%= form_tag(products_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Products..." %>
+      <button class="btn" type="submit"><i class="icon-search"></i></button>
+    </div>
+<% end %>
+
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
       <th>Sku</th>
       <th>Color</th>
       <th>Collection</th>
+      <th>Notes</th>
       <th>Inventory</th>
       <th>Cost</th>
-      <th>Notes</th>
       <th>Wholesale</th>
       <th>Retail</th>
       <th>Selling</th>
@@ -18,7 +25,11 @@
 
   <tbody>
     <% @products.each do |product| %>
-      <tr>
+    <% if current_user.try(:admin?) %>
+      <tr class="product-row" data-link="<%= edit_product_path(product) %>">
+    <% else %>
+      <tr class="product-row" data-link="<%= show_product_path(product) %>">
+    <% end %>
         <td><%= product.title %></td>
         <td><%= product.sku %></td>
         <td><%= product.color %></td>

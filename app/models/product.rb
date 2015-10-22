@@ -5,6 +5,14 @@ class Product < ActiveRecord::Base
 
   before_validation :default_to_zero_inventory, on: [:create, :update]
 
+  validates :title, presence: true
+  validates :sku, presence: true
+
+
+  def self.search(query)
+    where("title like ?", "%#{query}%")
+  end
+
   private
 
   def default_to_zero_inventory
