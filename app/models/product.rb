@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   before_validation :default_to_zero_inventory, on: [:create, :update]
 
   validates :title, presence: true
-  validates :sku, presence: true
+  validates :sku, presence: true, uniqueness: true
 
 
   def self.search(query, field)
