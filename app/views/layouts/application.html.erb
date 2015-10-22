@@ -22,13 +22,16 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right navbar-text user-navbar-action">
+        <% if current_user.try(:admin?) %>
+            <li><%= link_to "New Product", new_product_path %></li>
+        <% end %>
+        <% if current_user.try(:admin?) %>
+            <li><a href="#">Reports</a></li>
+        <% end %>
         <% if user_signed_in? %>
             <li>
               <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
             </li>
-        <% end %>
-        <% if current_user.try(:admin?) %>
-            <li><a href="#">Reports</a></li>
         <% end %>
       </ul>
     </div>
@@ -39,7 +42,7 @@
   <div class="row">
     <div class="col-xs-12">
       <% flash.each do |name,msg| -%>
-          <%= content_tag :div, msg, class:name %>
+          <%= content_tag :div, msg, class:name, id: "flash" %>
       <% end -%>
       <%= yield %>
     </div>

@@ -13,6 +13,10 @@ class Product < ActiveRecord::Base
     where("#{field} like ?", "%#{query}%")
   end
 
+  def total_inventory
+    self.blacklion_inventory + self.bdbox_inventory + self.cotswold_inventory + self.warehouse_inventory
+  end
+
   private
 
   def default_to_zero_inventory

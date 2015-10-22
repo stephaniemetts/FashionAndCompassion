@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <strong>Total Inventory</strong>
+  <%= @product.total_inventory %>
+</p>
+
+<p>
   <strong>Warehouse inventory:</strong>
   <%= @product.warehouse_inventory %>
 </p>
@@ -41,13 +46,13 @@
 </p>
 
 <p>
-  <strong>Cost cents:</strong>
-  <%= @product.cost_cents %>
+  <strong>Notes:</strong>
+  <%= @product.notes %>
 </p>
 
 <p>
-  <strong>Notes:</strong>
-  <%= @product.notes %>
+  <strong>Cost cents:</strong>
+  <%= @product.cost_cents %>
 </p>
 
 <p>
@@ -65,5 +70,7 @@
   <%= @product.selling %>
 </p>
 
+<% if current_user.try(:admin?) %>
 <%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
 <%= link_to 'Back', products_path %>
