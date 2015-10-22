@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <%= form_tag(products_path, :method => "get", class: "navbar-form", id: "search-form") do %>
     <div class="input-append">
@@ -22,7 +21,6 @@
       <th>Sku</th>
       <th>Color</th>
       <th>Collection</th>
-      <th>Notes</th>
       <th>Inventory</th>
       <th>Cost</th>
       <th>Wholesale</th>
@@ -43,10 +41,9 @@
         <td><%= product.color %></td>
         <td><%= product.collection %></td>
         <td><%= product.warehouse_inventory + product.bdbox_inventory + product.blacklion_inventory + product.cotswold_inventory %></td>
-        <td><%= product.cost %></td>
-        <td><%= product.notes %></td>
-        <td><%= product.wholesale %></td>
-        <td><%= product.retail %></td>
+        <td><%= product.cost.format %></td>
+        <td><%= product.wholesale.format %></td>
+        <td><%= product.retail.format %></td>
         <td>
           <% if product.selling %>
           &#10004
