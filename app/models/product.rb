@@ -9,8 +9,8 @@ class Product < ActiveRecord::Base
   validates :sku, presence: true
 
 
-  def self.search(query)
-    where("title like ?", "%#{query}%")
+  def self.search(query, field)
+    where("#{field} like ?", "%#{query}%")
   end
 
   private
