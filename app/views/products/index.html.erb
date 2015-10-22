@@ -47,7 +47,13 @@
         <td><%= product.notes %></td>
         <td><%= product.wholesale %></td>
         <td><%= product.retail %></td>
-        <td><%= product.selling %></td>
+        <td>
+          <% if product.selling %>
+          &#10004
+          <% else %>
+          &#10008
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
