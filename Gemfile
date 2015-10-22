@@ -29,6 +29,9 @@ gem 'devise'
 # use money-rails gem to handle money in database and provide helper methods for conversion/validation
 gem 'money-rails'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

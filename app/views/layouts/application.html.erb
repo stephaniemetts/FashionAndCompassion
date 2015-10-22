@@ -10,7 +10,32 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<%= yield %>
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h1>Fashion and Compassion</h1>
+    </div>
+    <div class="col-xs-6">
+      <ul class="pull-right">
+        <% if user_signed_in? %>
+        <li>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </li>
+        <% end %>
+        <% if current_user.try(:admin?) %>
+        <li><a href="#">Reports</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
