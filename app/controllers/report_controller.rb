@@ -6,7 +6,7 @@ class ReportController < ApplicationController
   end
 
   def changes
-    @changes = Audited::Adapters::ActiveRecord::Audit.all
+    @changes = Audited::Adapters::ActiveRecord::Audit.all.order("created_at DESC")
     if params[:search]
       @products = Product.search(params[:search], :title).order("created_at DESC")
       @changes.select{|x| @products.ids.include? x.auditable_id}
@@ -52,6 +52,7 @@ class ReportController < ApplicationController
       @start_date = build_date_from_params("start_date", params[:report])
       @end_date = build_date_from_params("end_date", params[:report])
       @products = Product.search(params[:search], :title).order("created_at DESC")
+      @products = @products.select{|x| x.turnover(@start_date, @end_date) > 0}
     else
 
     end

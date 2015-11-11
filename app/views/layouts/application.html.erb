@@ -28,10 +28,10 @@
 						<ul class = "dropdown-menu">
 							<li><%= link_to "Report Changes", report_changes_path %></li>
 							<li><%= link_to "Low Inventory", report_low_path%></li>
-							<li><a href="#">Inventory on Hand</a></li>
-							<li><a href="#">Value on Hand</a></li>
-							<li><a href="#">Turn Over</a></li>
-								</ul>	
+							<li><%= link_to "Inventory On Hand", report_on_hand_path %></li>
+							<li><%= link_to "Value On Hand", report_value_path %></li>
+							<li><%= link_to "Turn Over", report_turnover_path %></li>
+								</ul>
 								</li>
 <%end%>
         <% if user_signed_in? %>

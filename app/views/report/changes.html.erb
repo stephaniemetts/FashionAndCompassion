@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th>Product</th>
+      <th>SKU</th>
       <th>User</th>
       <th>Change</th>
       <th>Date</th>
@@ -20,6 +21,7 @@
     <% @changes.each do |change| %>
     <tr>
       <td><%= Product.get(change.auditable_id).title %></td>
+      <td><%= Product.get(change.auditable_id).sku %></td>
       <td><%= User.get(change.user_id).email %></td>
       <td><%= change.audited_changes %></td>
       <td><%= change.created_at %></td>

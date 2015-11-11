@@ -36,7 +36,7 @@ class Product < ActiveRecord::Base
       audit.audited_changes.each do |change|
         key = change.first
         if key == "bdbox_inventory" || key == "cotswold_inventory" || key == "warehouse_inventory" || key == "blacklion_inventory"
-          change = change.last.last - change.last.first
+          change = change.last.first - change.last.last
           if change > 0
             @turnover += change
           end
