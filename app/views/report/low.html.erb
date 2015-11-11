@@ -1,0 +1,41 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Sku</th>
+    <th>Color</th>
+    <th>Collection</th>
+    <th>Inventory</th>
+    <th>Cost</th>
+    <th>Wholesale</th>
+    <th>Retail</th>
+    <th>Selling</th>
+  </tr>
+  </thead>
+
+  <tbody class="text-left">
+  <% @products.each do |product| %>
+      <% if current_user.try(:admin?) %>
+          <tr class="product-row" data-link="<%= edit_product_path(product) %>">
+      <% else %>
+          <tr class="product-row" data-link="<%= product_path(product) %>">
+      <% end %>
+      <td><%= product.title %></td>
+      <td><%= product.sku %></td>
+      <td><%= product.color %></td>
+      <td><%= product.collection %></td>
+      <td><%= product.total_inventory %></td>
+      <td><%= product.cost.format %></td>
+      <td><%= product.wholesale.format %></td>
+      <td><%= product.retail.format %></td>
+      <td>
+        <% if product.selling %>
+            &#10004
+        <% else %>
+            &#10008
+        <% end %>
+      </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

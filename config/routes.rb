@@ -15,6 +15,15 @@ Rails.application.routes.draw do
      root 'home#index', as: :authenticated_root
      # Route all resources normally if authenticated
      resources :products
+
+
+     get 'report' => 'report#index'
+     get 'report/changes' => 'report#changes'
+     get 'report/low' => 'report#low'
+     get 'report/on_hand' => 'report#on_hand'
+     get 'report/value' => 'report#value'
+     get 'report/turnover' => 'report#turnover'
+
    end
 
    unauthenticated :user do

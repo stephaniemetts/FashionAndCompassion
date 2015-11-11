@@ -29,6 +29,9 @@ gem 'devise'
 # use money-rails gem to handle money in database and provide helper methods for conversion/validation
 gem 'money-rails'
 
+# use audited to track db changes
+gem "audited-activerecord", "~> 4.0"
+
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 

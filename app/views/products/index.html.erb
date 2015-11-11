@@ -29,7 +29,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="text-left">
     <% @products.each do |product| %>
     <% if current_user.try(:admin?) %>
       <tr class="product-row" data-link="<%= edit_product_path(product) %>">
