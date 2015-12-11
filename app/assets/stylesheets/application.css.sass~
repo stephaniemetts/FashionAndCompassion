@@ -40,5 +40,5 @@
 .no-buttons
   list-style-type: none
 
-.actions
-  color: blue
+.btn-group
+  color: primary

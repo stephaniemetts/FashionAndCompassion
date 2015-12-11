@@ -1,0 +1,6 @@
+<h2><span class="glyphicon glyphicon-plus"></span>   New Product Form</h2>
+<br>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', products_path %>

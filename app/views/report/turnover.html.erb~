@@ -1,4 +1,4 @@
-<h2><span class="glyphicon glyphicon-refresh"></span>  Turnover</h2>
+<h2><span class="glyphicon glyphicon-time"></span>  Turnover</h2>
 <br>
 <br>
 <%= form_tag(report_turnover_path, :method => "get", class: "navbar-form", id: "search-form") do %>
