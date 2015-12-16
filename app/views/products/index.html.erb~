@@ -11,6 +11,9 @@
       <%= label_tag :field_sku, "SKU" %>
       <%= radio_button_tag :field, :collection, (true if params[:field] == 'collection') %>
       <%= label_tag :field_sku, "Collection" %>
+
+      <%= radio_button_tag :field, :color, (true if params[:field] == 'color') %>
+      <%= label_tag :field_sku, "Color" %>
     </div>
 <% end %>
 
