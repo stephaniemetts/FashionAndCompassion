@@ -21,7 +21,7 @@ module ShopifyDataPull
           product.notes = ""
           product.retail = variant.price
           product.selling = variant.inventory_policy == "continue"
-          product.save
+          product.save_without_auditing
         end
       end
     end
@@ -38,7 +38,7 @@ module ShopifyDataPull
             product = Product.search(variant.sku,:sku).first
             product.warehouse_inventory += variant.inventory_quantity
             product.wholesale = variant.price
-            product.save
+            product.save_without_auditing
           end
         end
       end
@@ -70,7 +70,7 @@ module ShopifyDataPull
             p.retail = variant.price
           end
           p.selling = variant.inventory_policy == "continue"
-          p.save
+          p.save_without_auditing
         end
       end
     end

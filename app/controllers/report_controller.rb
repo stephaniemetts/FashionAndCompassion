@@ -6,8 +6,8 @@ class ReportController < ApplicationController
   end
 
   def changes
-    @changes = Audited::Adapters::ActiveRecord::Audit.all.order("created_at DESC")
     if params[:search]
+      @changes = Audited::Adapters::ActiveRecord::Audit.all.order("created_at DESC")
       @products = Product.search(params[:search], :title).order("created_at DESC")
       @changes.select{|x| @products.ids.include? x.auditable_id and x.user_id.present?}
     end
