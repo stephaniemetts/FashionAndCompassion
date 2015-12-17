@@ -1,5 +1,5 @@
 <h1><img src = "http://cdn.shopify.com/s/files/1/0241/2099/t/4/assets/logo.png?3316934976037730235"></h1>
-<h2>ASSOCIATE LOGIN</h2>
+<h2>Associate Login</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -22,6 +22,8 @@
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
+<button type="button" class="btn btn-primary"><span = glyphicon glyphicon-lock>Submit</span></button>
+
 <% end %>
 
 <%= render "devise/shared/links" %>

@@ -22,15 +22,13 @@
 
   <tbody class="text-left">
     <% @changes.each do |change| %>
-        <% change.audited_changes.each do |audit| %>
-            <tr>
-                <td><%= Product.get(change.auditable_id).title %></td>
-                <td><%= Product.get(change.auditable_id).sku %></td>
-                <td><%= User.get(change.user_id).email %></td>
-                <td>"<%= audit.first %>" from "<%= audit.last.first %>" to "<%=audit.last.last %>"</td>
-                <td><%= change.created_at %></td>
-            </tr>
-       <% end %>
+    <tr>
+      <td><%= Product.get(change.auditable_id).title %></td>
+      <td><%= Product.get(change.auditable_id).sku %></td>
+      <td><%= User.get(change.user_id).email %></td>
+      <td><%= change.audited_changes %></td>
+      <td><%= change.created_at %></td>
+    </tr>
     <%end%>
   </tbody>
 </table>
