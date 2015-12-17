@@ -51,7 +51,7 @@ module ShopifyDataPull
       ShopifyAPI::Base.site = shop_url
       @sproducts = ShopifyAPI::Product.all
       @sproducts.each do |sp|
-        sp.variant.each do |variant|
+        sp.variants.each do |variant|
           p = Product.search(variant.sku,:sku).first
           p.warehouse_inventory = 0
           p.save
