@@ -43,5 +43,29 @@ module ShopifyDataPull
         end
       end
     end
+
+    def self.updates
+      api_key = ENV["SHOPIFY_API_KEY"]
+      password = ENV["SHOPIFY_PASSWORD"]
+      shop_url = "https://#{api_key}:#{password}@fashion-compassion.myshopify.com/admin"
+      ShopifyAPI::Base.site = shop_url
+      @sproducts = ShopifyAPI::Product.all
+      @sproducts.each do |sp|
+        sp.variants.each do |variant|
+          p = Product.search(variant.sku,:sku).first
+          p.title = sp.title
+          p.color = variant.title
+          p.collection = sp.vendor
+          p.warehouse_inventory = variant.inventory_quantity
+          if variant.title.include?("wholesale")
+            p.wholesale = variant.price
+          else
+            p.retail = variant.price
+          end
+          p.selling = variant.inventory_policy == "continue"
+          p.save
+        end
+      end
+    end
   end
 end
