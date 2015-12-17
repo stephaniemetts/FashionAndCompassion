@@ -51,12 +51,19 @@ module ShopifyDataPull
       ShopifyAPI::Base.site = shop_url
       @sproducts = ShopifyAPI::Product.all
       @sproducts.each do |sp|
+        sp.variant.each do |variant|
+          p = Product.search(variant.sku,:sku).first
+          p.warehouse_inventory = 0
+          p.save
+        end
+      end
+      @sproducts.each do |sp|
         sp.variants.each do |variant|
           p = Product.search(variant.sku,:sku).first
           p.title = sp.title
           p.color = variant.title
           p.collection = sp.vendor
-          p.warehouse_inventory = variant.inventory_quantity
+          p.warehouse_inventory += variant.inventory_quantity
           if variant.title.include?("wholesale")
             p.wholesale = variant.price
           else
