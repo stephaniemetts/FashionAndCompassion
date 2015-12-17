@@ -18,6 +18,7 @@ module ShopifyDataPull
           product.warehouse_inventory = variant.inventory_quantity
           product.cost = 0
           product.wholesale = 0
+          product.notes = ""
           product.retail = variant.price
           product.selling = variant.inventory_policy == "continue"
           product.save
@@ -35,6 +36,7 @@ module ShopifyDataPull
         sp.variants.each do |variant|
           if variant.title.include?("wholesale")
             product = Product.search(variant.sku,:sku).first
+            product.warehouse_inventory += variant.inventory_quantity
             product.wholesale = variant.price
             product.save
           end
